@@ -1,0 +1,94 @@
+---
+layout: framework
+title: 友链
+---
+
+<div class="post-body">
+    <div id="links">
+       <style>
+          .links-content{
+          margin-top:1rem;
+          }
+          .link-navigation::after {
+          content: " ";
+          display: block;
+          clear: both;
+          }
+          .card {
+          width: 45%;
+          font-size: 1rem;
+          padding: 10px 20px;
+          border-radius: 4px;
+          transition-duration: 0.15s;
+          margin-bottom: 1rem;
+          display:flex;
+          }
+          .card:nth-child(odd) {
+          float: left;
+          }
+          .card:nth-child(even) {
+          float: right;
+          }
+          .card:hover {
+          transform: scale(1.1);
+          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+          }
+          .card a {
+          border:none;
+          }
+          .card .ava {
+          width: 3rem!important;
+          height: 3rem!important;
+          margin:0!important;
+          margin-right: 1em!important;
+          border-radius:4px;
+          }
+          .card .card-header {
+          font-style: italic;
+          overflow: hidden;
+          width: 100%;
+          }
+          .card .card-header a {
+          font-style: normal;
+          color: #2bbc8a;
+          font-weight: bold;
+          text-decoration: none;
+          }
+          .card .card-header a:hover {
+          color: #d480aa;
+          text-decoration: none;
+          }
+          .card .card-header .info {
+          font-style:normal;
+          color:#a3a3a3;
+          font-size:14px;
+          min-width: 0;
+          overflow: hidden;
+          white-space: nowrap;
+          }
+       </style>
+       <div><font size="6">友链：</font></div>
+       <div class="links-content">
+          <div class="link-navigation">
+             <div class="card">
+                <img class="ava" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1040170f-3f28-4974-b415-1aa9450597be%2Fff07a485-3e2e-4e97-9364-21a093e5e4d3%2Fbigicon.jpg?table=collection&id=15e257c7-c864-8198-b4c7-000b9c92afaf&t=15e257c7-c864-8198-b4c7-000b9c92afaf&width=800&cache=v2" />
+                <div class="card-header">
+                   <div>
+                      <a href="https://elysium-everlasting.com/">试鸢</a>
+                   </div>
+                   <div class="info">猫娘小蛋糕的blog</div>
+                </div>
+             </div>
+             <div class="card">
+                <img class="ava" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F5c2890c6-c774-4683-8900-ba8c90c01db6%2F60e9b907-f28f-4fd0-9cab-9dd1fdad6f9b%2F%25E5%25BE%25AE%25E4%25BF%25A1%25E5%259B%25BE%25E7%2589%2587_20240314184113.jpg?table=collection&id=ed46ad4f-8b0a-499b-9c9c-b9d5fdde65df&t=ed46ad4f-8b0a-499b-9c9c-b9d5fdde65df&width=800&cache=v2" />
+                <div class="card-header">
+                   <div>
+                      <a href="https://www.zjuhjy.top/">嘎嘎sama</a>
+                   </div>
+                   <div class="info">嘎嘎's NoteBook</div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
