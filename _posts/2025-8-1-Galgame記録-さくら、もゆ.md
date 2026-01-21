@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Galgame記録: さくら、もゆ
+title: Galgame記録：さくら、もゆ
 excerpt_image: /assets/images/2025-8-1-Galgame記録-さくら、もゆ/cover.jpg
 ---
 

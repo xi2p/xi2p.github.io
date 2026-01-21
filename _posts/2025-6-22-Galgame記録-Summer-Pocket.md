@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Galgame記録: Summer Pocket REFLECTION BLUE
+title: Galgame記録：Summer Pocket REFLECTION BLUE
 excerpt_image: /assets/images/2025-6-22-Galgame記録-Summer-Pocket/cover.webp
 ---
 
