@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Galgame記録：苍の彼方のフォーリズム EXTRA 2
+title: Galgame記録：蒼の彼方のフォーリズム EXTRA 2
 excerpt_image: /assets/images/2026-2-2-Galgame記録-苍の彼方のフォーリズム-EXTRA-2/cover.webp
 ---
 
