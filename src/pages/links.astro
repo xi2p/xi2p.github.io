@@ -1,0 +1,23 @@
+---
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+
+const linksPost = await getEntry("spec", "links");
+
+if (!linksPost) {
+	throw new Error("Links page content not found");
+}
+
+const { Content } = await render(linksPost);
+---
+
+<MainGridLayout title="友链" description="朋友们的个人站点">
+	<div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+		<div class="card-base z-10 px-9 py-6 relative w-full">
+			<Markdown class="mt-2">
+				<Content />
+			</Markdown>
+		</div>
+	</div>
+</MainGridLayout>
