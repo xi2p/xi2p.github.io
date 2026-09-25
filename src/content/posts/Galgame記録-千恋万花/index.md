@@ -3,7 +3,7 @@ title: "Galgame記録：千恋*万花"
 published: 2025-06-18
 description: "不错的作品。最喜欢丛雨线（看了丛雨线还怎么忍心看其他线...）"
 image: "./cover.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

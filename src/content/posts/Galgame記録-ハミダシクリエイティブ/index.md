@@ -3,7 +3,7 @@ title: "Galgame記録：ハミダシクリエイティブ"
 published: 2025-09-05
 description: "不错的萌拔。只玩了あすみ和妹妹线。最爱小天使！"
 image: "./cover.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

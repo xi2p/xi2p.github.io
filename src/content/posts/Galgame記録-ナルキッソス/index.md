@@ -3,7 +3,7 @@ title: "Galgame記録：ナルキッソス"
 published: 2025-06-19
 description: "不错的作品，有点年纪了，应该算得上是传统ADV。"
 image: "./cover.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

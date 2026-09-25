@@ -3,7 +3,7 @@ title: "Galgame記録：枯れない世界と終わる花"
 published: 2025-06-21
 description: "只玩了莲的线。爱莲说！（没想到选了三次家人就会进莲的线，，，"
 image: "./cover.webp"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

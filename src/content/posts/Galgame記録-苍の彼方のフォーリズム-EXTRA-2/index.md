@@ -3,7 +3,7 @@ title: "Galgame記録：蒼の彼方のフォーリズム EXTRA 2"
 published: 2026-02-02
 description: "尚可的一部作品。"
 image: "./cover.webp"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

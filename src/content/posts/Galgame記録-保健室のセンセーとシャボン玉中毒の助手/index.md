@@ -3,7 +3,7 @@ title: "Galgame記録：保健室のセンセーとシャボン玉中毒の助�
 published: 2025-12-30
 description: "个人很喜欢的一部作品。首先シロバナ真的很可爱！！！！！"
 image: "./pic1.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

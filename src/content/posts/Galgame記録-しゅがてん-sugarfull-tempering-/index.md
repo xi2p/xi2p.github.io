@@ -3,7 +3,7 @@ title: "Galgame記録：しゅがてん！-sugarfull tempering-"
 published: 2025-10-25
 description: "不错的作品。我很喜欢冰织线，个人感觉另外两条线稍显潦草了。"
 image: "./cover.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

@@ -3,7 +3,7 @@ title: "Galgame記録：Unless Terminalia"
 published: 2025-11-15
 description: "还可以的作品。"
 image: "./cover.png"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

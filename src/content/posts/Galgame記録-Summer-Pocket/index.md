@@ -3,7 +3,7 @@ title: "Galgame記録：Summer Pocket REFLECTION BLUE"
 published: 2025-06-22
 description: "神作。真的很感动。历经无数轮回也要实现的幸福。"
 image: "./cover.webp"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

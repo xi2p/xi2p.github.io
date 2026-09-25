@@ -3,7 +3,7 @@ title: "Galgame記録：星空鉄道とシロの旅"
 published: 2025-06-19
 description: "心目中的神作。"
 image: "./cover.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

@@ -3,7 +3,7 @@ title: "Galgame記録：KANADE"
 published: 2025-12-20
 description: "FrontWing的作品，据说是ATRI -My Dear Moments-的精神续作。但是个人玩下来感觉感触并没有ATRI那么深。"
 image: "./cover.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

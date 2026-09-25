@@ -3,7 +3,7 @@ title: "Galgame記録：さくらの雲 スカアレットの恋"
 published: 2025-09-25
 description: "神作。剧情、作画、音乐都没得挑剔。"
 image: "./cover.webp"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

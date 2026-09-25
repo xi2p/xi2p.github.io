@@ -3,7 +3,7 @@ title: "Galgame記録：さくら、もゆ"
 published: 2025-08-01
 description: "神作。剧情作。音乐和剧本都是神。作画风格是favorite独特的画风，我也很喜欢。"
 image: "./cover.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

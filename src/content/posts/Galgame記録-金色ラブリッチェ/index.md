@@ -3,7 +3,7 @@ title: "Galgame記録：金色ラブリッチェ"
 published: 2025-12-15
 description: "不错的作品。剧情没问题，总体很有趣，角色塑造好，作画很精美，音乐也恰到好处。优秀的萌拔。"
 image: "./cover.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

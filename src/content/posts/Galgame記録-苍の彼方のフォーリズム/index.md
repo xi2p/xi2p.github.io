@@ -3,7 +3,7 @@ title: "Galgame記録：蒼の彼方のフォーリズム"
 published: 2026-01-26
 description: "这是我相当喜欢的一部作品。"
 image: "./cover.png"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---

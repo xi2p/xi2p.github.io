@@ -3,7 +3,7 @@ title: "Galgame記録：ATRI -My Dear Moments-"
 published: 2025-06-17
 description: "个人非常非常喜欢的一部作品。作品尝试了人类与机器人的爱恋，探讨机器人有没有“心”的问题。"
 image: "./cover.jpg"
-tags: ["Galgame","游戏记录"]
+tags: ["Galgame"]
 category: "Galgame"
 draft: false
 ---
