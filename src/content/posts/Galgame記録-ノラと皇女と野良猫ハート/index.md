@@ -1,7 +1,7 @@
 ---
 title: "Galgame記録：ノラと皇女と野良猫ハート"
 published: 2026-02-12
-description: "很有特色的一部作品。我只推了パトリシア线。其实我本来是先在osu上找到了他的TV动画片头曲ネ！コ！,然后有些兴趣，来玩了这部作品。"
+description: "很有特色的一部作品。无厘头的剧情令人忍俊不禁。"
 image: "./cover.jpg"
 tags: ["Galgame"]
 category: "Galgame"
