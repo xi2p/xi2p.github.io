@@ -1,6 +1,6 @@
 ---
 title: "Galgame記録：セレクトオブリージュ"
-published: 2026-05-16
+published: 2026-02-26
 description: "窗社一部还行的作品。"
 image: "./cover.png"
 tags: ["Galgame"]
