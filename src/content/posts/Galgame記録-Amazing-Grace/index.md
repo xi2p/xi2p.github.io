@@ -2,7 +2,7 @@
 title: "Galgame記録：アメイジング・グレイス"
 published: 2026-06-14
 description: "卷心菜社的一个好作品。"
-image: "./cover.webp"
+image: "./cover.jpg"
 tags: ["Galgame"]
 category: "Galgame"
 draft: false
