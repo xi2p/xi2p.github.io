@@ -1,6 +1,6 @@
 ---
 title: "Galgame記録：ハミダシクリエイティブ凸"
-published: 2026-6-19
+published: 2026-06-19
 description: "ハミダシクリエイティブ续作，小天使依旧无敌可爱。"
 image: "./cover.png"
 tags: ["Galgame"]
