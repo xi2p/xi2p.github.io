@@ -1,7 +1,6 @@
 import { type CollectionEntry, getCollection } from "astro:content";
-import I18nKey from "@i18n/i18nKey";
-import { i18n } from "@i18n/translation";
-import { getCategoryUrl } from "@utils/url-utils.ts";
+import { getCategoryName, getCategoryUrl, getDir } from "@utils/url-utils.ts";
+import { siteConfig } from "../config";
 
 // // Retrieve posts and sort them by publication date
 async function getRawSortedPosts() {
@@ -74,41 +73,55 @@ export async function getTagList(): Promise<Tag[]> {
 
 export type Category = {
 	name: string;
+	title: string;
+	description: string;
+	image: string;
+	imageBasePath: string;
+	order: number;
 	count: number;
 	url: string;
 };
 
 export async function getCategoryList(): Promise<Category[]> {
-	const allBlogPosts = await getCollection<"posts">("posts", ({ data }) => {
-		return import.meta.env.PROD ? data.draft !== true : true;
-	});
-	const count: { [key: string]: number } = {};
-	allBlogPosts.forEach((post: { data: { category: string | null } }) => {
-		if (!post.data.category) {
-			const ucKey = i18n(I18nKey.uncategorized);
-			count[ucKey] = count[ucKey] ? count[ucKey] + 1 : 1;
-			return;
+	const [posts, details] = await Promise.all([
+		getRawSortedPosts(),
+		getCollection("categories"),
+	]);
+	const metadata = new Map<string, CollectionEntry<"categories">>();
+	for (const entry of details) {
+		if (metadata.has(entry.data.name.toLowerCase())) {
+			throw new Error(`Duplicate category: ${entry.data.name}`);
 		}
-
-		const categoryName =
-			typeof post.data.category === "string"
-				? post.data.category.trim()
-				: String(post.data.category).trim();
-
-		count[categoryName] = count[categoryName] ? count[categoryName] + 1 : 1;
-	});
-
-	const lst = Object.keys(count).sort((a, b) => {
-		return a.toLowerCase().localeCompare(b.toLowerCase());
-	});
-
-	const ret: Category[] = [];
-	for (const c of lst) {
-		ret.push({
-			name: c,
-			count: count[c],
-			url: getCategoryUrl(c),
+		metadata.set(entry.data.name.toLowerCase(), entry);
+	}
+	const categories = new Map<string, Category>();
+	for (const post of posts) {
+		const name = getCategoryName(post.data.category);
+		const key = name.toLowerCase();
+		const existing = categories.get(key);
+		if (existing) {
+			existing.count++;
+			continue;
+		}
+		const detail = metadata.get(key);
+		categories.set(key, {
+			name: detail?.data.name ?? name,
+			title: detail?.data.title ?? `${name} · 文章集`,
+			description:
+				detail?.data.description ??
+				`这里收录了「${name}」分类下的文章，点击查看全部内容。`,
+			image: detail?.data.image || post.data.image || siteConfig.banner.src,
+			imageBasePath: detail
+				? `content/categories/${getDir(detail.id)}`
+				: post.data.image
+					? `content/posts/${getDir(post.id)}`
+					: "/",
+			order: detail?.data.order ?? 100,
+			count: 1,
+			url: getCategoryUrl(name),
 		});
 	}
-	return ret;
+	return [...categories.values()].sort(
+		(a, b) => a.order - b.order || a.name.localeCompare(b.name, "zh-CN"),
+	);
 }

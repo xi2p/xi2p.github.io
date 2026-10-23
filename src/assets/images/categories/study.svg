@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#e8edf9"/><stop offset="1" stop-color="#b7c7e9"/></linearGradient>
+    <linearGradient id="page" y2="1"><stop stop-color="#fffdf8"/><stop offset="1" stop-color="#e6eaf5"/></linearGradient>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h960v640H0z"/>
+  <circle cx="755" cy="138" r="182" fill="#fff" opacity=".2"/>
+  <circle cx="98" cy="554" r="216" fill="#99add6" opacity=".22"/>
+  <g transform="translate(480 320) rotate(-8)">
+    <ellipse cy="174" rx="280" ry="34" fill="#526a9c" opacity=".17"/>
+    <path d="M-258-136Q-122-171 0-114Q122-171 258-136V154Q120 120 0 181Q-120 120-258 154Z" fill="#6983b7"/>
+    <path d="M-246-153Q-120-185 0-126V164Q-120 103-246 135Z" fill="url(#page)"/>
+    <path d="M246-153Q120-185 0-126V164Q120 103 246 135Z" fill="#fffdf8"/>
+    <path d="M0-126V164" stroke="#c1cce2" stroke-width="4"/>
+    <g fill="none" stroke="#a6b8d7" stroke-width="8" stroke-linecap="round">
+      <path d="M-204-100q79-12 162 17M-204-57q79-12 162 17M-204-14q79-12 162 17M-204 29q79-12 162 17M-204 72q52-8 104 5"/>
+      <path d="M43-82q81-29 161-17M43-39q81-29 161-17M43 4q81-29 161-17M43 47q81-29 161-17M43 90q54-19 106-20"/>
+    </g>
+    <path d="M171-163v100l22-16 22 16v-98" fill="#9b80ad"/>
+  </g>
+</svg>

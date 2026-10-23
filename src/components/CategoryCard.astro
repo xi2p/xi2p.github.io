@@ -1,0 +1,21 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Category } from "../utils/content-utils";
+import CardFrame from "./CardFrame.astro";
+
+interface Props {
+	category: Category;
+	style?: string;
+}
+
+const { category, style } = Astro.props;
+---
+
+<CardFrame title={category.title} url={category.url} image={category.image} imageBasePath={category.imageBasePath} class="onload-animation category-card" style={style}>
+    <div slot="metadata" class="flex items-center gap-2 mb-4 text-sm font-medium text-50 transition">
+        <div class="meta-icon"><Icon name="material-symbols:menu-rounded" class="text-xl" /></div>
+        <a href={category.url} class="link-lg transition hover:text-[var(--primary)]">{category.name}</a>
+    </div>
+    <div class="transition text-75 mb-3.5 pr-4">{category.description}</div>
+    <div slot="footer" class="text-sm text-black/30 dark:text-white/30 transition">{category.count} 篇文章</div>
+</CardFrame>

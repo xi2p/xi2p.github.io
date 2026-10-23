@@ -29,6 +29,12 @@ export default defineConfig({
 	site: "https://xi2p.github.io/",
 	base: "/",
 	trailingSlash: "always",
+	// Preserve bookmarks to the article pages from before the category homepage.
+	redirects: {
+		"/2/": "/categories/galgame/2/",
+		"/3/": "/categories/galgame/3/",
+		"/4/": "/categories/galgame/4/",
+	},
 	integrations: [
 		tailwind({
 			nesting: true,

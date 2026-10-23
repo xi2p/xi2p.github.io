@@ -62,7 +62,7 @@ const className = Astro.props.class;
     </div>
 
     <!-- tags -->
-    <div class:list={["items-center", {"flex": !hideTagsForMobile, "hidden md:flex": hideTagsForMobile}]}>
+    {tags.length > 0 && <div class:list={["items-center", {"flex": !hideTagsForMobile, "hidden md:flex": hideTagsForMobile}]}>
         <div class="meta-icon"
         >
             <Icon name="material-symbols:tag-rounded" class="text-xl"></Icon>
@@ -76,7 +76,6 @@ const className = Astro.props.class;
                     {tag.trim()}
                 </a>
             ))}
-            {!(tags && tags.length > 0) && <div class="transition text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
         </div>
-    </div>
+    </div>}
 </div>

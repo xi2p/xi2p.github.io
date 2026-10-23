@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+import { url } from "../utils/url-utils";
+
+interface Props {
+	src: string;
+	title: string;
+}
+
+const { src, title } = Astro.props;
+const pdfUrl = url(src);
+---
+
+<section aria-label={`${title} PDF`} class="mb-8 onload-animation">
+    <div class="flex flex-wrap items-center gap-3 mb-4">
+        <a href={pdfUrl} target="_blank" rel="noopener" data-no-swup class="btn-regular rounded-lg px-4 py-2 gap-2">
+            <Icon name="material-symbols:open-in-new-rounded" class="text-xl" />在新窗口阅读
+        </a>
+        <a href={pdfUrl} download={`${title}.pdf`} data-no-swup class="btn-regular rounded-lg px-4 py-2 gap-2">
+            <Icon name="material-symbols:download-rounded" class="text-xl" />下载 PDF
+        </a>
+    </div>
+    <p class="text-sm text-50 mb-4">下方可直接预览原稿。如果浏览器未显示预览，可以在新窗口打开或下载阅读。</p>
+    <object data={`${pdfUrl}#view=FitH`} type="application/pdf" aria-label={`${title}在线预览`} class="w-full h-[70vh] min-h-[28rem] rounded-xl border border-[var(--line-divider)] bg-white">
+        <p class="p-6 text-neutral-600">当前浏览器无法内嵌预览。<a href={pdfUrl} target="_blank" rel="noopener" data-no-swup class="underline">打开《{title}》PDF</a></p>
+    </object>
+</section>

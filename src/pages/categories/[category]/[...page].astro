@@ -1,0 +1,39 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import PostPage from "../../../components/PostPage.astro";
+import Pagination from "../../../components/control/Pagination.astro";
+import { PAGE_SIZE } from "../../../constants/constants";
+import MainGridLayout from "../../../layouts/MainGridLayout.astro";
+import { type Category, getCategoryList, getSortedPosts } from "../../../utils/content-utils";
+import { getCategoryName, url } from "../../../utils/url-utils";
+
+export const getStaticPaths = (async ({ paginate }) => {
+	const [categories, posts] = await Promise.all([getCategoryList(), getSortedPosts()]);
+	return categories.flatMap((category) => paginate(
+		posts.filter((post) => getCategoryName(post.data.category).toLowerCase() === category.name.toLowerCase()),
+		{ pageSize: PAGE_SIZE, params: { category: category.name.toLowerCase() }, props: { category } },
+	));
+}) satisfies GetStaticPaths;
+
+interface Props {
+	page: Page<CollectionEntry<"posts">>;
+	category: Category;
+}
+
+const { page, category } = Astro.props;
+---
+
+<MainGridLayout title={`${category.name}${page.currentPage > 1 ? ` · 第 ${page.currentPage} 页` : ""}`} description={category.description}>
+    <section class="card-base px-6 md:px-9 py-6 mb-4 onload-animation">
+        <a href={url("/")} class="inline-flex items-center gap-1 text-sm text-50 hover:text-[var(--primary)] transition mb-3">
+            <Icon name="material-symbols:chevron-left-rounded" class="text-xl" />全部分类
+        </a>
+        <h1 class="text-3xl font-bold text-90 mb-2">{category.title}</h1>
+        <p class="text-sm text-50 mb-3">{category.name} · {category.count} 篇文章</p>
+        <p class="text-75">{category.description}</p>
+    </section>
+    <PostPage page={page} />
+    {page.lastPage > 1 && <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${page.data.length * 50}ms)`} />}
+</MainGridLayout>

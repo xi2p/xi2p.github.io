@@ -21,7 +21,7 @@ const interval = 50;
                 image={entry.data.image}
                 description={entry.data.description}
                 draft={entry.data.draft}
-                class:list="onload-animation"
+                class:list="onload-animation post-card"
                 style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
         ></PostCard>
     ))}

@@ -1,7 +1,6 @@
 ---
 import type { Page } from "astro";
 import { Icon } from "astro-icon/components";
-import { url } from "../../utils/url-utils";
 
 interface Props {
 	page: Page;
@@ -46,8 +45,8 @@ if (r === page.lastPage - 2) pages.push(page.lastPage - 1);
 if (r < page.lastPage) pages.push(page.lastPage);
 
 const getPageUrl = (p: number) => {
-	if (p === 1) return "/";
-	return `/${p}/`;
+	const first = page.url.first || page.url.current;
+	return p === 1 ? first : `${first.replace(/\/$/, "")}/${p}/`;
 };
 ---
 
@@ -69,7 +68,7 @@ const getPageUrl = (p: number) => {
                 >
                     {p}
                 </div>
-            return <a href={url(getPageUrl(p))} aria-label={`Page ${p}`}
+            return <a href={getPageUrl(p)} aria-label={`Page ${p}`}
                 class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
             >{p}</a>
         })}

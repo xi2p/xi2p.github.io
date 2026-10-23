@@ -9,7 +9,7 @@ import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "xi2p's Blog",
-	subtitle: "动漫 · Galgame · 随笔",
+	subtitle: "Galgame · 学习资料 · 随笔",
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 225, // A calm blue-violet that works with the warm banner artwork

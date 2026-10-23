@@ -1,0 +1,13 @@
+---
+import CategoryCard from "../components/CategoryCard.astro";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { getCategoryList } from "../utils/content-utils";
+
+const categories = await getCategoryList();
+---
+
+<MainGridLayout>
+    <div aria-label="文章分类" class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
+        {categories.map((category, index) => <CategoryCard category={category} style={`animation-delay: calc(var(--content-delay) + ${index * 50}ms);`} />)}
+    </div>
+</MainGridLayout>

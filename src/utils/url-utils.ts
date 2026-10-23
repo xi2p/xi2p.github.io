@@ -22,13 +22,13 @@ export function getTagUrl(tag: string): string {
 }
 
 export function getCategoryUrl(category: string | null): string {
-	if (
-		!category ||
-		category.trim() === "" ||
-		category.trim().toLowerCase() === i18n(I18nKey.uncategorized).toLowerCase()
-	)
-		return url("/archive/?uncategorized=true");
-	return url(`/archive/?category=${encodeURIComponent(category.trim())}`);
+	return url(
+		`/categories/${encodeURIComponent(getCategoryName(category).toLowerCase())}/`,
+	);
+}
+
+export function getCategoryName(category: string | null | undefined): string {
+	return category?.trim() || i18n(I18nKey.uncategorized);
 }
 
 export function getDir(path: string): string {
