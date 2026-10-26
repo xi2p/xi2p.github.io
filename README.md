@@ -1,4 +1,4 @@
-> 本仓库是 [xi2p 的博客](https://xi2p.github.io/)，基于 Fuwari 定制了分类首页与 PDF 学习资料文章。新增分类、写作、目录结构及部署说明请阅读 [WRITING.md](./WRITING.md)。使用 Node.js 24 和 pnpm 9.14.4；推送到 master 后自动检查并发布到 GitHub Pages。
+> 本仓库是 [xi2p 的博客](https://xi2p.github.io/)，基于 Fuwari 定制了分类首页、PDF 学习资料文章与小项目入口。大学日语默写器 [Chiwa Dictation](https://xi2p.github.io/dictation/) 的功能、用法与二次开发说明见 [dictation/README.md](./dictation/README.md)。新增分类、写作、目录结构及部署说明请阅读 [WRITING.md](./WRITING.md)。使用 Node.js 24 和 pnpm 9.14.4；推送到 master 后自动检查并发布到 GitHub Pages。
 
 # 🍥Fuwari  
 ![Node.js >= 20](https://img.shields.io/badge/node.js-%3E%3D20-brightgreen) 
