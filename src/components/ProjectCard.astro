@@ -1,0 +1,18 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<a href="/dictation/" data-no-swup class="project-card card-base onload-animation flex flex-col md:flex-row overflow-hidden rounded-[var(--radius-large)] group" aria-label="打开 Chiwa Dictation 大学日语默写器">
+    <div class="p-6 md:pl-9 md:py-7 flex-1">
+        <div class="text-sm text-50 mb-3 flex gap-2 items-center"><Icon name="material-symbols:school-rounded" class="text-xl text-[var(--primary)]" />小项目 · 学习工具</div>
+        <h2 class="text-3xl font-bold text-90 group-hover:text-[var(--primary)] transition mb-3">Chiwa Dictation</h2>
+        <div class="text-75 mb-4">大学日语默写器。为旧版标日准备的选课背词、五十音与本轮复习工具，手机与电脑都能用。</div>
+        <span class="text-sm text-[var(--primary)] flex items-center gap-1">开始学习<Icon name="material-symbols:arrow-outward-rounded" /></span>
+    </div>
+    <div class="project-cover flex items-center justify-center gap-4 p-6 md:w-[28%]" aria-hidden="true"><span>あ</span><span>ア</span></div>
+</a>
+<style>
+    .project-cover { background: #e8eee3; color: #285b49; }
+    .project-cover span { font-family: "Yu Mincho", serif; font-size: 3rem; }
+    .project-cover span:last-child { color: #b55a37; transform: translateY(1rem); }
+</style>

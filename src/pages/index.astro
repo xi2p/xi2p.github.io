@@ -1,5 +1,6 @@
 ---
 import CategoryCard from "../components/CategoryCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { getCategoryList } from "../utils/content-utils";
 
@@ -10,4 +11,10 @@ const categories = await getCategoryList();
     <div aria-label="文章分类" class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
         {categories.map((category, index) => <CategoryCard category={category} style={`animation-delay: calc(var(--content-delay) + ${index * 50}ms);`} />)}
     </div>
+    <div class="flex items-center gap-4 my-7 px-2" role="separator" aria-label="小项目分区">
+        <span class="flex-1 border-t border-black/10 dark:border-white/15"></span>
+        <h2 class="text-sm font-medium text-50">小项目</h2>
+        <span class="flex-1 border-t border-black/10 dark:border-white/15"></span>
+    </div>
+    <section aria-label="小项目" class="mb-4"><ProjectCard /></section>
 </MainGridLayout>

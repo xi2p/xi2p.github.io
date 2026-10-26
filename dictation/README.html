@@ -1,0 +1,125 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>使用说明 · Chiwa Dictation</title><link rel="stylesheet" href="./styles.css"><link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"></head><body><header class="site-header wrap"><a class="brand" href="./"><span class="brand-mark" lang="ja">ち</span><span>Chiwa Dictation<small>使用说明与开发文档</small></span></a><a class="back-site" href="./">返回默写器 ↗</a></header><main class="wrap doc"><h1 id="chiwa-dictation-·-大学日语默写器">Chiwa Dictation · 大学日语默写器</h1>
+<p>为浙江大学日语通识系列课程制作的静态学习工具。使用<strong>旧版</strong>《中日交流标准日本语》，可在手机与电脑浏览器中使用，不需要日语输入法或麦克风。</p>
+<p><a href="https://xi2p.github.io/dictation/">打开默写器</a> · <a href="https://github.com/xi2p">作者 GitHub</a></p>
+<h2 id="给学习者">给学习者</h2>
+<h3 id="怎么开始">怎么开始</h3>
+<ol>
+<li>在“单词练习”中逐课选择范围，或点“日语 1／2／3／4”、教材单元、本册进行快速选择。课程快捷选择会替换当前范围，之后仍能逐课增减；单元和本册选择可以叠加。</li>
+<li>选择“新学”或“复习”，勾选单词Ⅰ、单词Ⅱ中的至少一项。默认只选考试所用的单词Ⅰ；单词Ⅱ用于补充拓展，实际考试范围以任课教师要求为准。</li>
+<li>设置本轮数量（10／20／30／全部）和顺序（按课／随机）。按课时从所选范围开头取词，随机时重新抽样；不会跳过曾经学过的词。“查看所选词表”可以检查完整范围。</li>
+<li>默认静音。在方便发声的环境下，可以开启“允许发声与听力题”，选择设备的日语声音并测试。没有日语语音时仍可关闭声音使用其他题型。</li>
+<li>开始练习。结束后查看本轮统计，练错词、练未测词条、重开同一范围，或者下载文字总结。</li>
+</ol>
+<h3 id="新学与复习有什么区别">新学与复习有什么区别</h3>
+<p>**新学：**每五个词一组，先看日语写法、假名、中文含义和短句，再做两种回想练习。每组练完才进入下一组。先在脑中回想，再查看选项，会比立刻猜答案更有帮助。</p>
+<p>**复习：**省略认读，直接使用中日互选、读音辨认、假名拼词等题型。开启声音后，部分单词题换成听音辨词。所有回答都通过点击完成；假名拼词也只需点击字符，可撤回与清空。</p>
+<p>**错词：**答错或点“还想不起来”后显示答案与解释，尽可能隔开几题再遇到。每个词累计出错三次后留在总结里，避免无限循环。本轮结束后可以只练出现过错误的词。每次练习都独立，不计算跨日记忆曲线。</p>
+<p>设计参考了 <a href="https://docs.ankiweb.net/deck-options.html#learning-steps">Anki 的短期学习步骤</a>和 <a href="https://blog.duolingo.com/spaced-repetition-for-learning/">Duolingo 的练后纠错与重复练习</a>，本工具采用的是<strong>单次会话内</strong>的分组与回想，没有跨日调度。</p>
+<h3 id="五十音">五十音</h3>
+<p>切换至“五十音”，选择平假名、片假名或混合练习，再勾选具体行。支持基础清音、浊音、半浊音与拗音。认读卡、假名与罗马字互选和本轮总结均可使用。</p>
+<p>参考表另外解释了促音、长音、拗音；开启声音后可以听促音与长音的对比。罗马字采用常见赫本式：し写作 shi、ち写作 chi、つ写作 tsu、ふ写作 fu。じ／ぢ、ず／づ的同音项不会互作干扰项。を写作 wo 以区分字符，作助词时通常读作 o。TTS 读单个假名与连续词时可能有语音差异，应结合课堂示范学习。</p>
+<h3 id="词库与版本">词库与版本</h3>
+<p>目前整理了初上 24 个词汇课、初下 24 个词汇课和中上前 10 课，共 <strong>2,123 条分课词条</strong>。同一个词在不同课、不同词表出现时保留各自的条目，不把它们合并。数量以分课词条计，不等同于不重复的单词数。</p>
+<table>
+<thead>
+<tr>
+<th>课程</th>
+<th>选择范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日语 1</td>
+<td>五十音（独立模块）＋初上 1—14 课</td>
+</tr>
+<tr>
+<td>日语 2</td>
+<td>初上 15—25 课＋初下 1—4 课</td>
+</tr>
+<tr>
+<td>日语 3</td>
+<td>初下 5—20 课</td>
+</tr>
+<tr>
+<td>日语 4</td>
+<td>初下 21—25 课＋中上 1—10 课</td>
+</tr>
+</tbody>
+</table>
+<p>旧版初级下册沿用<strong>原书第 26—50 课</strong>。页面以“初下第 1—25 课”便于选课，同时在课卡显示原书课号。两册初级的最后一课分别是原书第 25、50 课，均为模拟试题，没有独立新增词表，因此只作说明而不提供虚构的词条。初级按原书每四课一个单元选择；中上用每四课一组的快捷分组。</p>
+<p>整理依据为用户提供的三册扫描件，并以<a href="https://bbs.newwise.com/thread-299278-1-1.html">公开旧版初级与中级词表转录</a>及<a href="https://jp.tingroom.com/tingli/bzhryzj/3562.html">旧版中级分课词表</a>辅助核对。扫描页通过本地 OCR 与经用户授权的 MinerU 定点识别；没有把整册扫描件作为网站资源分发。</p>
+<p>词表Ⅰ／Ⅱ分别保留。表尾只有波浪线、没有独立词性与释义的句型／接辞不作为独立测试词条。扫描件中的声调编号没有导入，以免转录差异被当成标准答案。保留教材年代用语（如“ソ連”“看護婦”），不混入新版标日的分课词表。词库经过结构检查、逐课整理与扫描抽查，仍欢迎按词条 ID 提交勘误，不能替代教师对考试范围的说明。</p>
+<p>每课配有按该阶段程度编写的简短日中对照句及假名读法。词条有专属短句时显示“配套短句”；其余显示“本课句型短句”，用于复习该课语法，不冒充包含当前词的例句。短句为本项目编写，不是教材原句复刻。</p>
+<h3 id="统计如何计算">统计如何计算</h3>
+<ul>
+<li>**已测试词条：**至少回答过一次的词条数；提前结束时另列未测试词条。</li>
+<li>**首次正确率：**每个已测试词条第一次回答是否正确；重复练习的答案不抬高这个数。</li>
+<li>**错后已答对：**曾答错，最后一次尝试答对的词条数。</li>
+<li>**仍需巩固：**曾答错，最后一次仍未答对的词条数。</li>
+<li>**答题次数：**包括新学的第二种题型及错词重试；它与词条数量不同。</li>
+</ul>
+<p>这些数字描述本轮表现，不代表长期掌握程度。提前结束仍可导出已完成部分的总结。</p>
+<h3 id="声音、隐私与清除设置">声音、隐私与清除设置</h3>
+<p>声音使用浏览器的 Web Speech API 实时合成，音频不预先存储在仓库。具体声音、网络需求与合成服务由设备／浏览器决定；部分系统需要先安装日语语音包。没有可用日语声音、语音出错或启动超时会提示处理，练习可以改用文字题。页面切到后台、切题或结束时停止朗读。</p>
+<p>不注册，不上传作答记录，不使用麦克风，不保存学过的词、正确率、错词本或历史学习时间。**刷新／关闭页面会丢失当前进度。**仅选课、词表、模式、数量等设置可保存在浏览器 <code>localStorage</code>；声音每次重新打开页面都默认关闭。无存储权限也能练习。</p>
+<p>点击页脚“清除本工具设置”恢复默认，只删除本工具的设置键，不影响个人站点其他设置。运行中清除时会先在页面内确认。本工具没有 Service Worker 或离线音频缓存；浏览器普通 HTTP 缓存由浏览器管理。</p>
+<p>桌面端选择题支持按 1—4 作答，Enter 继续；手机端直接点击。布局适配窄屏，并支持键盘焦点与减少动态效果偏好。</p>
+<h2 id="给二次开发者">给二次开发者</h2>
+<h3 id="目录与部署">目录与部署</h3>
+<pre><code class="language-text">dictation/
+├── index.html             # 独立入口与角色／作者页脚
+├── styles.css             # 响应式样式
+├── app.js                 # 选课、交互、声音与结果展示
+├── engine.js              # 无副作用的本轮学习引擎
+├── kana.js                # 五十音数据与转换
+├── assets/                # favicon 与用户提供的角色图
+├── data/vocabulary.json   # 运行词库、课信息、短句
+├── scripts/               # 校验脚本、文档生成
+├── tests/                 # Node 单元测试
+├── integration.mjs        # Astro 开发服务及构建复制
+├── README.md              # 本文；运行时生成 README.html
+├── SOURCES.md             # 来源、范围与勘误记录
+├── PLAN.md                # 开发范围
+└── PROGRESS.md            # 接续开发记录
+</code></pre>
+<p>运行不依赖框架、服务端、数据库、密钥、CDN 字体或第三方前端脚本。<code>app.js</code> 使用原生 ES Modules。直接双击文件时，浏览器会限制模块与 JSON 请求，请通过 HTTP 访问。</p>
+<p>在仓库根目录：</p>
+<pre><code class="language-sh">pnpm dev
+# 打开终端显示的地址，然后访问 /dictation/
+
+node --test dictation/tests/engine.test.mjs
+node dictation/scripts/validate-data.mjs
+pnpm check
+pnpm build
+pnpm verify
+</code></pre>
+<p>也可在仓库根目录运行 <code>python -m http.server 4321</code>，访问 <code>http://localhost:4321/dictation/</code>。说明页由 <code>README.md</code> 生成；文档修改后运行 <code>node dictation/scripts/render-readme.mjs</code> 更新 <code>dictation/README.html</code>，并一同提交。</p>
+<p>Astro 从根目录导入 <code>integration.mjs</code>。开发阶段仅挂载白名单中的运行文件；构建阶段将运行文件复制至 <code>dist/dictation/</code>，将 Markdown 说明生成 <code>README.html</code>。**不会复制 scripts、tests、进度文档或扫描件。**GitHub Pages 沿用仓库的 Actions；无需单独部署默写器。首页项目链接带 <code>data-no-swup</code>，确保在博客与独立应用之间完整导航。</p>
+<h3 id="词库格式与维护">词库格式与维护</h3>
+<p><code>vocabulary.json</code> 是 UTF-8 JSON：</p>
+<pre><code class="language-json">{
+  &quot;version&quot;: 1,
+  &quot;lessons&quot;: [{
+    &quot;id&quot;: &quot;b1-1&quot;, &quot;book&quot;: &quot;b1&quot;, &quot;number&quot;: 1,
+    &quot;originalNumber&quot;: 1, &quot;unit&quot;: 1,
+    &quot;title&quot;: &quot;自己介绍&quot;, &quot;exam&quot;: false,
+    &quot;example&quot;: {&quot;ja&quot;: &quot;わたしは学生です。&quot;, &quot;reading&quot;: &quot;わたしは がくせいです。&quot;, &quot;zh&quot;: &quot;我是学生。&quot;}
+  }],
+  &quot;words&quot;: [{
+    &quot;id&quot;: &quot;b1-1-1-1&quot;, &quot;lessonId&quot;: &quot;b1-1&quot;, &quot;list&quot;: 1,
+    &quot;word&quot;: &quot;わたし&quot;, &quot;reading&quot;: &quot;わたし&quot;, &quot;meaning&quot;: &quot;我&quot;, &quot;pos&quot;: &quot;代&quot;
+  }]
+}
+</code></pre>
+<p>教材 ID：<code>b1</code> 初上、<code>b2</code> 初下、<code>m1</code> 中上。<code>number</code> 是册内选择课号，<code>originalNumber</code> 为原书课号。初级的第 25 课使用 <code>exam: true</code> 且无词条。词条必须有稳定且唯一的 <code>id</code>，可以额外添加 <code>example: {ja, reading, zh}</code>。不要把不确定的假名当作标准答案；修改词义或词表归属后，记录在 <code>SOURCES.md</code>，运行校验及测试。</p>
+<p>界面中的课程对应关系集中于 <code>engine.js</code> 的 <code>courseLessons</code>。若某学年进度调整，用户可直接手动微调；如修改默认课程方案，应同步 README 与测试。增加全新教材时同时更新 <code>BOOKS</code>、课程映射、数据校验范围和来源说明。</p>
+<h3 id="学习引擎与题型">学习引擎与题型</h3>
+<p><code>Session</code> 的阶段为 <code>learn → quiz → summary</code>，复习直接从 <code>quiz</code> 开始。引擎持有本轮词条、队列和结果 <code>Map</code>，完全不访问存储或网络，易于独立测试。新学每组两轮检测；每个词首次结果单独保存。错误题在队列中向后插入，累计三次错误后停止自动重试；新学预排的第二题仍会完成。</p>
+<p>题型包括 <code>word</code>（中到日）、<code>meaning</code>（日到中）、<code>reading</code>、<code>tiles</code>（点击拼读音）、<code>audio</code>；五十音另有 <code>romaji</code>。纯假名词不会再问“看着同样的假名选读音”；超过 12 个字符的拼词改为选择题。选项来自本课同一所选词表，排除相同释义和相同读音，避免同音多解。选择正确项后锁定所有回答按钮，防止双击计分。</p>
+<p>TTS 仅挑选 <code>ja</code> 语言的系统声音。第一次加载和 <code>voiceschanged</code> 时更新列表。无日语声音不允许开始带声音的练习；运行中失败则关闭本轮声音并把当前听力题变为文字题。没有静态音频、第三方 TTS URL 或浏览器中的 API 密钥。</p>
+<h3 id="存储与安全边界">存储与安全边界</h3>
+<p>仅使用 <code>chiwa-dictation.settings.v1</code> 一个键。读取时检查已知枚举和选课 ID，损坏或被禁用的存储退回默认设置。所有词库和设置文本在插入 HTML 前转义。总结以 UTF-8 纯文本导出；不把词汇做成可执行 CSV 公式。</p>
+<p>扫描原件、OCR 中间件、截图、临时下载和浏览器验证结果全部位于仓库忽略的 <code>tmp/</code>，不提交。不得把教材原件放进 <code>public/</code>、<code>dictation/</code> 或 <code>dist/</code>。CI 校验运行词库格式、课程映射、错词队列、统计边界、构建复制与首页链接。</p>
+<h3 id="作者与素材">作者与素材</h3>
+<p>作者：<strong>xi2p @ github/cc98，GPT6.1 Sol</strong>。角色图片由站点作者提供，压缩为 WebP 后用于页脚小卡片；角色及教材相关权利归各自权利人。程序源代码沿用仓库许可证，素材和教材词汇不因程序许可证而改变原有权属。</p>
+</main><footer class="wrap site-footer"><a href="./">← 返回默写器</a></footer></body></html>

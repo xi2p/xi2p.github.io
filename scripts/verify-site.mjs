@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
+import { renderReadme } from "../dictation/scripts/render-readme.mjs";
 
 const root = process.cwd();
 const dist = path.join(root, "dist");
@@ -147,6 +148,42 @@ assert.ok(
 	"Search index must be built",
 );
 assert.ok(existsSync(path.join(dist, "rss.xml")), "RSS must be built");
+assert.equal(
+	(home.match(/class="[^"]*\bproject-card\b/g) || []).length,
+	1,
+	"Homepage must contain one project card",
+);
+assert.ok(
+	home.includes('href="/dictation/" data-no-swup'),
+	"Project must navigate outside the blog shell",
+);
+for (const file of [
+	"index.html",
+	"styles.css",
+	"app.js",
+	"engine.js",
+	"kana.js",
+	"data/vocabulary.json",
+	"assets/chiwa.webp",
+	"assets/favicon.svg",
+]) {
+	assert.equal(
+		hash(path.join(root, "dictation", file)),
+		hash(path.join(dist, "dictation", file)),
+		`Dictation runtime changed during build: ${file}`,
+	);
+}
+assert.equal(
+	read(path.join(dist, "dictation", "README.html")),
+	await renderReadme(),
+	"Built documentation must match source",
+);
+assert.ok(
+	!walk(path.join(dist, "dictation")).some((file) =>
+		/\.(pdf|py|md|test\.mjs)$/i.test(file),
+	),
+	"Do not deploy scans or development files",
+);
 assert.ok(
 	existsSync(path.join(dist, "sitemap-index.xml")),
 	"Sitemap must be built",
