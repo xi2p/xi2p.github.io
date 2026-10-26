@@ -27,6 +27,9 @@ package-lock.json
 bun.lockb
 yarn.lock
 
+# Local extraction and browser verification artifacts
+tmp/
+
 # ide
 .idea
 *.iml
