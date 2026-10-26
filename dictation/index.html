@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f2">
+  <meta name="description" content="Chiwa Dictation 大学日语默写器：为旧版标准日本语准备的选课背词、五十音与本轮复习工具。无需日语输入法，支持手机与电脑。">
+  <title>Chiwa Dictation · 大学日语默写器</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到学习内容</a>
+  <header class="site-header wrap">
+    <a class="brand" href="./" aria-label="Chiwa Dictation 首页"><span class="brand-mark" lang="ja">ち</span><span>Chiwa <b>Dictation</b><small>大学日语默写器</small></span></a>
+    <a class="back-site" href="/">xi2p 的小站 <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="main" class="wrap" tabindex="-1">
+    <div id="loading" class="loading" role="status">正在准备旧版标日词库…</div>
+    <div id="app"></div>
+    <noscript><div class="panel">请启用 JavaScript 后使用默写器。学习数据只在本轮页面中处理。</div></noscript>
+  </main>
+  <footer class="wrap site-footer">
+    <div class="credit-card"><img src="./assets/chiwa.webp" alt="Chiwa，粉色头发的角色插画" width="76" height="76" loading="lazy"><div><span class="eyebrow">A LITTLE COMPANY FOR YOUR STUDY</span><p>和 Chiwa 一起，慢慢记住。</p><small>作者：<a href="https://github.com/xi2p" target="_blank" rel="noopener noreferrer">xi2p @ github/cc98</a>，GPT6.1 Sol</small></div><span class="credit-flower" aria-hidden="true">✳</span></div>
+    <div class="footer-links"><span>旧版标日 · 本轮学习 · 轻装出发</span><div><a href="./README.html">使用说明与开发文档</a><button id="clear-settings" class="text-button" type="button">清除本工具设置</button></div></div>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="confirm-dialog" aria-labelledby="dialog-title"><form method="dialog"><h2 id="dialog-title">结束这次练习？</h2><p id="dialog-message"></p><div class="button-row"><button value="cancel" class="button secondary">继续练习</button><button value="confirm" class="button primary">确认</button></div></form></dialog>
+</body>
+</html>
