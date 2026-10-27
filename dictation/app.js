@@ -266,12 +266,33 @@ function soundButton(word) {
 		: "";
 }
 function exampleHTML(word) {
-  const example = word.example;
-  if (!example) return '';
-  const form = example.form || word.word;
-  const position = example.ja.indexOf(form);
-  const sentence = position < 0 ? esc(example.ja) : esc(example.ja.slice(0,position)) + '<mark class="example-target">' + esc(form) + '</mark>' + esc(example.ja.slice(position+form.length));
-  return '<div class="example"><span class="example-label">单词例句</span><p lang="ja">' + sentence + '</p><p class="example-zh" lang="ja">' + esc(example.reading) + '</p><p class="example-zh">' + esc(example.zh) + '</p>' + (settings.listening ? '<button class="text-button" data-speak="'+esc(example.ja)+'">▷ 朗读例句</button>' : '') + '</div>';
+	const example = word.example;
+	if (!example) return "";
+	const form = example.form || word.word;
+	const position = example.ja.indexOf(form);
+	const sentence =
+		position < 0
+			? esc(example.ja)
+			: esc(example.ja.slice(0, position)) +
+				'<mark class="example-target">' +
+				esc(form) +
+				"</mark>" +
+				esc(example.ja.slice(position + form.length));
+	return (
+		'<div class="example"><span class="example-label">单词例句</span><p lang="ja">' +
+		sentence +
+		'</p><p class="example-zh" lang="ja">' +
+		esc(example.reading) +
+		'</p><p class="example-zh">' +
+		esc(example.zh) +
+		"</p>" +
+		(settings.listening
+			? '<button class="text-button" data-speak="' +
+				esc(example.ja) +
+				'">▷ 朗读例句</button>'
+			: "") +
+		"</div>"
+	);
 }
 function startSession(words = null) {
 	if (settings.listening && !japaneseVoices.length) {
@@ -422,12 +443,31 @@ function submitAnswer(correct, choice = null) {
 	next?.focus({ preventScroll: true });
 }
 function renderFeedback() {
-  const word = session.current.word;
-  const result = session.results.get(word.id);
-  const correct = result.correct;
-  $('#skip-action').hidden = true;
-  const message = correct ? '✓ 这次想起来了。' : result.mistakes < 3 ? '再认识一次，稍后会重遇。' : '先记下它，留到下一轮巩固。';
-  $('#answer-feedback').innerHTML = '<div class="feedback-actions"><button class="button primary" data-action="quiz-next">下一题 →</button>'+soundButton(word)+'</div><div class="answer-feedback '+(correct?'':'incorrect')+'"><strong>'+message+'</strong><div class="answer-detail" lang="ja">'+esc(word.word)+'<small>'+esc(word.kana?word.romaji:word.reading)+' · '+esc(word.meaning)+'</small></div>'+exampleHTML(word)+'</div>';
+	const word = session.current.word;
+	const result = session.results.get(word.id);
+	const correct = result.correct;
+	$("#skip-action").hidden = true;
+	const message = correct
+		? "✓ 这次想起来了。"
+		: result.mistakes < 3
+			? "再认识一次，稍后会重遇。"
+			: "先记下它，留到下一轮巩固。";
+	$("#answer-feedback").innerHTML =
+		'<div class="feedback-actions"><button class="button primary" data-action="quiz-next">下一题 →</button>' +
+		soundButton(word) +
+		'</div><div class="answer-feedback ' +
+		(correct ? "" : "incorrect") +
+		'"><strong>' +
+		message +
+		'</strong><div class="answer-detail" lang="ja">' +
+		esc(word.word) +
+		"<small>" +
+		esc(word.kana ? word.romaji : word.reading) +
+		" · " +
+		esc(word.meaning) +
+		"</small></div>" +
+		exampleHTML(word) +
+		"</div>";
 }
 function renderSummary() {
 	$(".credit-card").hidden = true;

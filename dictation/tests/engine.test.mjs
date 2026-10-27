@@ -12,6 +12,7 @@ import {
 } from "../engine.js";
 import { KANA_ROWS, kanaWords } from "../kana.js";
 import { validateData } from "../scripts/validate-data.mjs";
+import { compileExamples } from "../scripts/update-examples.mjs";
 const data = JSON.parse(
 	readFileSync(new URL("../data/vocabulary.json", import.meta.url), "utf8"),
 );
@@ -30,6 +31,51 @@ function complete(session, answer) {
 }
 test("all 58 word lessons have both lists, valid readings, examples and unique IDs", () =>
 	assert.ok(validateData(data).words > 2000));
+test("every word example is assigned explicitly and matches the editable source", () => {
+	const sentences = JSON.parse(
+		readFileSync(
+			new URL("../data/example-sentences.json", import.meta.url),
+			"utf8",
+		),
+	);
+	assert.deepEqual(compileExamples(data, sentences), data);
+	assert.equal(validateData(data).examples, data.words.length);
+	for (const word of data.words)
+		assert.ok(word.example.ja.includes(word.example.form));
+	const land = data.words.find((word) => word.word === "土地");
+	const mail = data.words.find((word) => word.word === "船便");
+	assert.match(land.example.ja, /土地/u);
+	assert.match(mail.example.ja, /船便/u);
+	assert.match(mail.example.reading, /ふなびん/u);
+	const kakeru = data.words.filter(
+		(word) => word.lessonId === "m1-6" && word.word === "かける",
+	);
+	assert.equal(kakeru.length, 2);
+	assert.match(kakeru[0].example.ja, /皮/u);
+	assert.match(kakeru[1].example.ja, /橋/u);
+});
+test("validation rejects missing, unrelated, and falsely labelled examples", () => {
+	const invalid = structuredClone(data);
+	const word = invalid.words.find((entry) => entry.word === "土地");
+	const original = word.example;
+	delete word.example;
+	assert.throws(() => validateData(invalid), /Missing example/u);
+	word.example = { ...original, ja: "図書館で本を借りたいです。" };
+	assert.throws(() => validateData(invalid), /Example lacks target form/u);
+	word.example.form = "図書館";
+	assert.throws(() => validateData(invalid), /Unrecognized target form/u);
+});
+test("multi-lesson sessions practice every selected entry, including scopes over thirty words", () => {
+	const words = selectWords(data.words, ["b1-14", "b1-15"], [1, 2]);
+	assert.ok(words.length > 30);
+	for (const mode of ["learn", "review"]) {
+		const session = new Session(words, { mode });
+		const stats = complete(session, () => true);
+		assert.equal(stats.total, words.length);
+		assert.equal(stats.attempted, words.length);
+		assert.equal(stats.pending.length, 0);
+	}
+});
 test("courses preserve user-provided boundaries and original lower-book numbering", () => {
 	assert.deepEqual(
 		courseLessons(1),

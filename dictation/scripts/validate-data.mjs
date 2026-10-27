@@ -1,6 +1,123 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+export function targetForms(word) {
+	const text = word.word;
+	const forms = new Set([text]);
+	const add = (stem, endings) =>
+		endings.forEach((ending) => forms.add(stem + ending));
+	if (text.endsWith("だ"))
+		add(text.slice(0, -1), [
+			"です",
+			"でした",
+			"ではありません",
+			"な",
+			"に",
+			"で",
+			"だった",
+		]);
+	if (text === "同じだ") forms.add("同じ");
+	if (word.pos.startsWith("动") || word.pos === "惯用") {
+		if (text.endsWith("する"))
+			add(text.slice(0, -2), [
+				"します",
+				"しました",
+				"しません",
+				"しませんでした",
+				"しましょう",
+				"しない",
+				"した",
+				"して",
+				"し",
+				"したい",
+				"すれば",
+				"できる",
+				"される",
+			]);
+		if (text.endsWith("くる") || text.endsWith("来る"))
+			add(text.slice(0, -2), [
+				"きます",
+				"きました",
+				"こない",
+				"きた",
+				"きて",
+				"来ます",
+				"来ました",
+				"来ない",
+				"来た",
+				"来て",
+			]);
+		if ((word.pos === "动2" || word.pos === "惯用") && text.endsWith("る"))
+			add(text.slice(0, -1), [
+				"ます",
+				"ました",
+				"ません",
+				"ませんでした",
+				"ましょう",
+				"ない",
+				"なかった",
+				"た",
+				"て",
+				"たい",
+				"れば",
+				"られる",
+				"よう",
+			]);
+		if (word.pos === "动1" || word.pos === "惯用") {
+			const index = [..."うくぐすつぬぶむる"].indexOf(text.at(-1));
+			if (index >= 0) {
+				const stem = text.slice(0, -1);
+				add(stem + [..."いきぎしちにびみり"][index], [
+					"ます",
+					"ました",
+					"ません",
+					"ませんでした",
+					"ましょう",
+					"たい",
+					"に",
+				]);
+				add(stem + [..."わかがさたなばまら"][index], ["ない", "なかった"]);
+				add(stem + [..."えけげせてねべめれ"][index], [
+					"ば",
+					"ます",
+					"ません",
+					"ませんでした",
+				]);
+				const te = text.endsWith("行く")
+					? "って"
+					: [
+							"って",
+							"いて",
+							"いで",
+							"して",
+							"って",
+							"んで",
+							"んで",
+							"んで",
+							"って",
+						][index];
+				add(stem, [te, te.slice(0, -1) + (te.endsWith("で") ? "だ" : "た")]);
+			}
+		}
+		const irregular = {
+			くださる: ["ください", "くださいます", "くださいました"],
+			おっしゃる: ["おっしゃいます", "おっしゃいました"],
+			なさる: ["なさいます", "なさいました"],
+			いらっしゃる: ["いらっしゃいます", "いらっしゃいました"],
+		};
+		for (const form of irregular[text] || []) forms.add(form);
+	}
+	if (word.pos === "形" && text.endsWith("い"))
+		add(text.slice(0, -1), [
+			"く",
+			"くて",
+			"かった",
+			"くない",
+			"くなかった",
+			"ければ",
+		]);
+	return forms;
+}
 export function validateData(data) {
 	assert.equal(data.version, 1);
 	assert.equal(data.lessons.length, 60);
@@ -31,9 +148,23 @@ export function validateData(data) {
 			`OCR artifact: ${word.id}`,
 		);
 		assert.ok(!/[A-Za-z`]/.test(word.meaning), `Unresolved gloss: ${word.id}`);
-		if (word.example)
-			for (const f of ["ja", "reading", "zh"])
-				assert.ok(word.example[f], `Missing example ${f}: ${word.id}`);
+		for (const f of ["ja", "reading", "zh", "form"])
+			assert.ok(
+				typeof word.example?.[f] === "string" && word.example[f].trim(),
+				`Missing example ${f}: ${word.id}`,
+			);
+		assert.ok(
+			word.example.ja.includes(word.example.form),
+			`Example lacks target form: ${word.id}`,
+		);
+		assert.ok(
+			targetForms(word).has(word.example.form),
+			`Unrecognized target form: ${word.id}`,
+		);
+		assert.ok(
+			!/[一-龯々A-Za-z0-9\uFFFD]/u.test(word.example.reading),
+			`Non-kana example reading: ${word.id}`,
+		);
 	}
 	for (const l of data.lessons) {
 		assert.equal(l.originalNumber, l.book === "b2" ? l.number + 25 : l.number);
@@ -43,11 +174,6 @@ export function validateData(data) {
 			assert.ok(
 				data.words.some((w) => w.lessonId === l.id && w.list === list),
 				`Missing list ${list}: ${l.id}`,
-			);
-		for (const key of ["ja", "reading", "zh"])
-			assert.ok(
-				l.example?.[key],
-				`Missing lesson short sentence ${key}: ${l.id}`,
 			);
 	}
 	return {
