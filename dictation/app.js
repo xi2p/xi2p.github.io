@@ -25,7 +25,6 @@ const defaults = {
 	selected: ["b1-1"],
 	lists: [1],
 	mode: "learn",
-	count: "10",
 	order: "lesson",
 	listening: false,
 	voice: "",
@@ -45,7 +44,6 @@ try {
 				: [1];
 		for (const [key, values] of Object.entries({
 			mode: ["learn", "review"],
-			count: ["10", "20", "30", "all"],
 			order: ["lesson", "shuffle"],
 			kanaScript: ["hiragana", "katakana", "both"],
 		}))
@@ -104,10 +102,7 @@ function countFor(id) {
 	return selectWords(data.words, [id], settings.lists).length;
 }
 function sessionCount() {
-	const count = currentPool().length;
-	return settings.count === "all"
-		? count
-		: Math.min(count, Number(settings.count));
+	return currentPool().length;
 }
 function renderHero() {
 	return `<section class="hero"><div><div class="eyebrow"><span class="dot"></span>旧版标准日本语 / ZJU JAPANESE</div><h1>把日语，<br>一点点<em>记牢。</em></h1><p>从五十音到每一课的单词。自己选范围，按自己的节奏，<br>在一次次回想中，让陌生变成熟悉。</p></div><div class="hero-art" aria-hidden="true"><div class="kana-note" lang="ja">あ</div><div class="kana-note second" lang="ja">ア</div><span class="art-flower">✳</span><span class="art-caption">A LITTLE PRACTICE, EVERY TIME.</span></div></section>`;
@@ -186,7 +181,7 @@ function renderSettings() {
 		)
 		.join(
 			"",
-		)}</div>${module === "words" ? `<div class="setting-group"><span class="label">词表范围 · 至少选一项</span><label class="check-row"><input type="checkbox" name="list" value="1" ${settings.lists.includes(1) ? "checked" : ""}>单词Ⅰ <small>考试范围</small></label><label class="check-row"><input type="checkbox" name="list" value="2" ${settings.lists.includes(2) ? "checked" : ""}>单词Ⅱ <small>补充拓展</small></label></div>` : ""}<div class="setting-pair"><label class="label">本轮数量<select name="count">${["10", "20", "30", "all"].map((n) => `<option value="${n}" ${settings.count === n ? "selected" : ""}>${n === "all" ? "全部" : n + (module === "kana" ? " 个假名" : " 个词")}</option>`).join("")}</select></label><label class="label">选词顺序<select name="order"><option value="lesson" ${settings.order === "lesson" ? "selected" : ""}>按课顺序</option><option value="shuffle" ${settings.order === "shuffle" ? "selected" : ""}>随机抽取</option></select></label></div><div class="setting-group"><label class="check-row"><input type="checkbox" name="listening" ${settings.listening ? "checked" : ""}>允许发声与听力题</label><p class="listening-note">默认静音。开启后使用设备实时日语 TTS，无需麦克风，不下载预录音频。</p><div id="voice-controls">${renderVoiceControls()}</div></div><div class="start-area"><div class="start-count"><b>${sessionCount()} <span>${module === "kana" ? "个假名" : "个词"}</span></b><span>${settings.mode === "learn" ? "分组认读 → 回想练习" : "直接测试 → 错词巩固"}</span></div><button class="button primary wide" data-action="start" ${!sessionCount() ? "disabled" : ""}><span>开始${settings.mode === "learn" ? "新学" : "复习"}</span><span aria-hidden="true">↗</span></button><p class="privacy-note">只记住设置，不保存学习记录。<br>刷新或关闭页面后，本轮进度即清空。</p></div></aside>`;
+		)}</div>${module === "words" ? `<div class="setting-group"><span class="label">词表范围 · 至少选一项</span><label class="check-row"><input type="checkbox" name="list" value="1" ${settings.lists.includes(1) ? "checked" : ""}>单词Ⅰ <small>考试范围</small></label><label class="check-row"><input type="checkbox" name="list" value="2" ${settings.lists.includes(2) ? "checked" : ""}>单词Ⅱ <small>补充拓展</small></label></div>` : ""}<div class="setting-group"><label class="label">练习顺序<select name="order"><option value="lesson" ${settings.order === "lesson" ? "selected" : ""}>按课顺序</option><option value="shuffle" ${settings.order === "shuffle" ? "selected" : ""}>随机顺序</option></select></label></div><div class="setting-group"><label class="check-row"><input type="checkbox" name="listening" ${settings.listening ? "checked" : ""}>允许发声与听力题</label><p class="listening-note">默认静音。开启后使用设备实时日语 TTS，无需麦克风，不下载预录音频。</p><div id="voice-controls">${renderVoiceControls()}</div></div><div class="start-area"><div class="start-count"><b>${sessionCount()} <span>${module === "kana" ? "个假名" : "个词"}</span></b><span>${settings.mode === "learn" ? "分组认读 → 回想练习" : "直接测试 → 错词巩固"}</span></div><button class="button primary wide" data-action="start" ${!sessionCount() ? "disabled" : ""}><span>开始${settings.mode === "learn" ? "新学" : "复习"}</span><span aria-hidden="true">↗</span></button><p class="privacy-note">只记住设置，不保存学习记录。<br>刷新或关闭页面后，本轮进度即清空。</p></div></aside>`;
 }
 function renderVoiceControls() {
 	if (!settings.listening) return "";
@@ -197,6 +192,7 @@ function renderVoiceControls() {
 	return `<select name="voice" class="voice-select" aria-label="日语语音">${japaneseVoices.map((v) => `<option value="${esc(v.voiceURI)}" ${v.voiceURI === settings.voice ? "selected" : ""}>${esc(v.name)}</option>`).join("")}</select><button class="pill sound-test" data-action="test-sound">▷ 测试发音</button>`;
 }
 function renderSetup(focus = false) {
+	$(".credit-card").hidden = false;
 	session = null;
 	stopSound();
 	app.innerHTML = `${renderHero()}${renderNav()}<div class="workspace" id="setup-workspace" role="tabpanel" aria-labelledby="tab-${module}">${module === "words" ? renderWordSelection() : renderKanaSelection()}${renderSettings()}</div><section class="help-strip" aria-label="使用步骤"><div><b><span class="help-number">01</span>圈定小范围</b><p>课程快捷选择后，逐课微调。</p></div><div><b><span class="help-number">02</span>让回想发生</b><p>先在心里想，再点选或拼假名。</p></div><div><b><span class="help-number">03</span>把错词带走</b><p>查看本轮总结，再练一遍错词。</p></div></section><p class="data-note"><b>教材说明</b>　初下第 1—25 课对应原书第 26—50 课；两册第 25 课均为模拟试题，不另造词表。中上收录前 10 课。<a href="./README.html#词库与版本">查看词库与校对说明 ↗</a></p>`;
@@ -270,9 +266,12 @@ function soundButton(word) {
 		: "";
 }
 function exampleHTML(word) {
-	const example = word.example || lesson(word.lessonId)?.example;
-	if (!example) return "";
-	return `<div class="example"><span class="example-label">${word.example ? "配套短句" : "本课句型短句"} · ${word.example ? "帮助理解词义" : "按本课程度编写"}</span><p lang="ja">${esc(example.ja)}</p>${example.reading ? `<p class="example-zh" lang="ja">${esc(example.reading)}</p>` : ""}<p class="example-zh">${esc(example.zh)}</p>${settings.listening ? `<button class="text-button" data-speak="${esc(example.ja)}">▷ 朗读短句</button>` : ""}</div>`;
+  const example = word.example;
+  if (!example) return '';
+  const form = example.form || word.word;
+  const position = example.ja.indexOf(form);
+  const sentence = position < 0 ? esc(example.ja) : esc(example.ja.slice(0,position)) + '<mark class="example-target">' + esc(form) + '</mark>' + esc(example.ja.slice(position+form.length));
+  return '<div class="example"><span class="example-label">单词例句</span><p lang="ja">' + sentence + '</p><p class="example-zh" lang="ja">' + esc(example.reading) + '</p><p class="example-zh">' + esc(example.zh) + '</p>' + (settings.listening ? '<button class="text-button" data-speak="'+esc(example.ja)+'">▷ 朗读例句</button>' : '') + '</div>';
 }
 function startSession(words = null) {
 	if (settings.listening && !japaneseVoices.length) {
@@ -281,8 +280,6 @@ function startSession(words = null) {
 	}
 	let selected = words || currentPool();
 	if (settings.order === "shuffle") selected = shuffle(selected);
-	if (!words && settings.count !== "all")
-		selected = selected.slice(0, Number(settings.count));
 	if (!selected.length) {
 		toast("请先选择有词条的课程或假名行。");
 		return;
@@ -298,6 +295,7 @@ function startSession(words = null) {
 	window.scrollTo({ top: 0, behavior: "instant" });
 }
 function renderSession() {
+	$(".credit-card").hidden = true;
 	stopSound();
 	if (session.phase === "summary") {
 		renderSummary();
@@ -424,14 +422,15 @@ function submitAnswer(correct, choice = null) {
 	next?.focus({ preventScroll: true });
 }
 function renderFeedback() {
-	const word = session.current.word;
-	const result = session.results.get(word.id);
-	const correct = result.correct;
-	$("#skip-action").hidden = true;
-	$("#answer-feedback").innerHTML =
-		`<div class="answer-feedback ${correct ? "" : "incorrect"}"><strong>${correct ? "✓ 这次想起来了。" : result.mistakes < 3 ? "再认识一次，稍后会重遇。" : "先记下它，留到下一轮巩固。"}</strong><div class="answer-detail" lang="ja">${esc(word.word)}<small>${esc(word.kana ? word.romaji : word.reading)} · ${esc(word.meaning)}</small></div>${exampleHTML(word)}<div class="feedback-actions">${soundButton(word)}<button class="button primary" data-action="quiz-next">继续 →</button></div></div>`;
+  const word = session.current.word;
+  const result = session.results.get(word.id);
+  const correct = result.correct;
+  $('#skip-action').hidden = true;
+  const message = correct ? '✓ 这次想起来了。' : result.mistakes < 3 ? '再认识一次，稍后会重遇。' : '先记下它，留到下一轮巩固。';
+  $('#answer-feedback').innerHTML = '<div class="feedback-actions"><button class="button primary" data-action="quiz-next">下一题 →</button>'+soundButton(word)+'</div><div class="answer-feedback '+(correct?'':'incorrect')+'"><strong>'+message+'</strong><div class="answer-detail" lang="ja">'+esc(word.word)+'<small>'+esc(word.kana?word.romaji:word.reading)+' · '+esc(word.meaning)+'</small></div>'+exampleHTML(word)+'</div>';
 }
 function renderSummary() {
+	$(".credit-card").hidden = true;
 	stopSound();
 	const s = session.stats();
 	const grouped = new Map();
@@ -470,7 +469,7 @@ function preview() {
 	const pool = currentPool();
 	const dialog = document.createElement("dialog");
 	dialog.setAttribute("aria-label", "所选词条");
-	dialog.innerHTML = `<form method="dialog"><h2>本次范围 · ${pool.length} ${module === "kana" ? "个假名" : "个词"}</h2><p class="tiny">本轮将${settings.order === "shuffle" ? "随机抽取" : "按课序选取"} ${sessionCount()} 个。可调整数量为“全部”。</p><div class="word-preview">${pool.map((w) => `<div class="preview-item"><b lang="ja">${esc(w.word)}</b><small>${esc(w.kana ? w.romaji : w.reading)} · ${esc(w.meaning)}</small><small>${esc(sourceLabel(w))}</small></div>`).join("") || '<p class="tiny">还没有选择词条。</p>'}</div><button class="button primary wide">返回选课</button></form>`;
+	dialog.innerHTML = `<form method="dialog"><h2>本次范围 · ${pool.length} ${module === "kana" ? "个假名" : "个词"}</h2><p class="tiny">本轮会${settings.order === "shuffle" ? "打乱顺序练习" : "按课顺序练习"}所选范围的全部 ${sessionCount()} 个${module === "kana" ? "假名" : "词条"}。</p><div class="word-preview">${pool.map((w) => `<div class="preview-item"><b lang="ja">${esc(w.word)}</b><small>${esc(w.kana ? w.romaji : w.reading)} · ${esc(w.meaning)}</small><small>${esc(sourceLabel(w))}</small></div>`).join("") || '<p class="tiny">还没有选择词条。</p>'}</div><button class="button primary wide">返回选课</button></form>`;
 	document.body.append(dialog);
 	dialog.addEventListener("close", () => dialog.remove(), { once: true });
 	dialog.showModal();

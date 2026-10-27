@@ -968,6 +968,12 @@ details[open] > summary {
 	display: block;
 	margin-bottom: 8px;
 }
+.example-target {
+	background: #e1ecd9;
+	color: inherit;
+	border-radius: 3px;
+	padding: 1px 3px;
+}
 .example p {
 	font-size: 15px;
 	line-height: 1.9;
