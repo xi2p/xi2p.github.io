@@ -130,7 +130,7 @@ function renderWordSelection() {
     )}${activeBook !== "m1" ? '<div class="lesson exam">第 25 课 · 模拟试题，无独立新增词表</div>' : ""}<div class="selection-footer"><strong id="selection-total">已选 ${settings.selected.filter((id) => lesson(id) && !lesson(id).exam).length} 课 · ${currentPool().length} 个词</strong><button class="text-button" data-action="preview">查看所选词表 ↗</button></div></section>`;
 }
 function renderKanaSelection() {
-  return `<section class="panel" aria-labelledby="scope-title"><div class="panel-title"><span class="step">01</span><h2 id="scope-title">从声音的起点开始</h2><button class="text-button tiny" data-action="clear-kana">清空选择</button></div><div class="setting-pair" style="margin:0 0 25px"><label class="label">练习哪种假名<select name="kanaScript"><option value="hiragana" ${settings.kanaScript === "hiragana" ? "selected" : ""}>平假名</option><option value="katakana" ${settings.kanaScript === "katakana" ? "selected" : ""}>片假名</option><option value="both" ${settings.kanaScript === "both" ? "selected" : ""}>平假名 + 片假名</option></select></label><div><span class="label">快速选择</span><div class="button-row"><button class="pill" data-kana-group="清音">清音</button><button class="pill" data-kana-group="all">全部</button></div></div></div><div class="kana-sections">${[
+  return `<section class="panel" aria-labelledby="scope-title"><div class="panel-title"><span class="step">01</span><h2 id="scope-title">背诵内容选择</h2><button class="text-button tiny" data-action="clear-kana">清空选择</button></div><div class="setting-pair" style="margin:0 0 25px"><label class="label">练习哪种假名<select name="kanaScript"><option value="hiragana" ${settings.kanaScript === "hiragana" ? "selected" : ""}>平假名</option><option value="katakana" ${settings.kanaScript === "katakana" ? "selected" : ""}>片假名</option><option value="both" ${settings.kanaScript === "both" ? "selected" : ""}>平假名 + 片假名</option></select></label><div><span class="label">快速选择</span><div class="button-row"><button class="pill" data-kana-group="清音">清音</button><button class="pill" data-kana-group="all">全部</button></div></div></div><div class="kana-sections">${[
     "清音",
     "浊音・半浊音",
     "拗音",
@@ -148,7 +148,7 @@ function renderKanaSelection() {
     )
     .join(
       "",
-    )}</div><details class="kana-reference"><summary>打开五十音参考表与发音提示</summary><p class="tiny">罗马字采用常用赫本式；ぢ／じ、づ／ず读音相同，选择题不会把它们互作干扰项。を通常读作 o，表中写作 wo 以区分字符。</p>${[
+    )}</div><details class="kana-reference"><summary>打开五十音参考表与发音提示</summary>${[
     "清音",
     "浊音・半浊音",
     "拗音",
